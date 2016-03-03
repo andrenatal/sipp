@@ -53,6 +53,7 @@
             search_in="msg"
             check_it=i"true"
             assign_to="1"/>
+
 	</action>
   </recv>
 
@@ -75,8 +76,8 @@
     ]]>
 
 	<action>
-		<exec command="echo [$1]  is the from header received primeiro >> from_list.log"/>
-		<exec command="bash nc_inject_mrcp.sh [$1]"/>
+		<exec command="echo [$1]-[remote_ip]  is the from header received primeiro >> from_list.log"/>
+		<exec command="bash nc_inject_mrcp.sh [$1] [remote_ip]"/> 
 	</action>
 
 
