@@ -21,17 +21,23 @@
       Content-Length: [len]
 
       v=0
-      o=user1 53655765 2353687637 IN IP4 [local_ip]
+      o=Asterisk 7363574972583245754 8799925994885435990 IN IP4 [local_ip]
       s=-
       c=IN IP4 [media_ip]
       t=0 0
       m=application 9 TCP/MRCPv2 1
       a=setup:active
       a=connection:new
-      a=resource:speechsynth
+      a=resource:speechrecog
       a=cmid:1
-      m=audio [media_port] RTP/AVP 0 8
-      a=recvonly
+      m=audio [media_port] RTP/AVP 0 8 96 101
+      a=rtpmap:0 PCMU/8000
+      a=rtpmap:8 PCMA/8000
+      a=rtpmap:96 L16/8000
+      a=rtpmap:101 telephone-event/8000
+      a=fmtp:101 0-15
+      a=sendonly
+      a=ptime:20
       a=mid:1
 
 	]]>
@@ -76,18 +82,19 @@
     ]]>
 
 	<action>
-		<exec command="echo [$1]-[remote_ip]  is the from header received primeiro >> from_list.log"/>
-		<exec command="bash nc_inject_mrcp.sh [$1] [remote_ip]"/> 
+		<exec command="bash nc_inject_mrcp_asr.sh [$1] [remote_ip]"/>
+		<exec play_pcap_audio="nao-longo.pcap" />
 	</action>
+ 
+ </send>
 
 
-  </send>
+  <pause milliseconds="45000" /> 
 
 
 
   <!-- This delay can be customized by the -d command-line option       -->
   <!-- or by adding a 'milliseconds = "value"' option here.             -->
-  <pause milliseconds="1500" />
 
 
   <!-- The 'crlf' option inserts a blank line in the statistics report. -->
