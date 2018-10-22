@@ -17,6 +17,7 @@ Speech-Complete-Timeout: 3000
 Recognition-Timeout: 30000
 Speech-Incomplete-Timeout: 200
 Speech-Language: pt-BR
+Sensitivity-Level: 2
 Content-Length: 17
 
 session:grammar-0" >> temp_session_asr/$1.sess
