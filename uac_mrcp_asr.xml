@@ -89,7 +89,7 @@
  </send>
 
 
-  <pause milliseconds="45000" /> 
+  <pause milliseconds="7500" /> 
 
 
 
